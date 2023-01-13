@@ -1,0 +1,39 @@
+POST http://localhost:8080/socks/add
+Content-Type: application/json
+
+{
+  "color": "BLUE",
+  "size": "L",
+  "composition": "COTTON_30",
+  "isThereInStock": true
+}
+
+###
+POST http://localhost:8080/socks/add
+Content-Type: application/json
+
+{
+  "color": "RED",
+  "size": "M",
+  "composition": "COTTON_100",
+  "isThereInStock": true
+}
+
+###
+POST http://localhost:8080/socks/add
+Content-Type: application/json
+
+{
+  "color": "GREEN",
+  "size": "XL",
+  "composition": "COTTON_60",
+  "isThereInStock": true
+}
+
+###
+GET http://localhost:8080/socks/color
+Content-Type: application/json
+
+{
+"color": "BLUE"
+}

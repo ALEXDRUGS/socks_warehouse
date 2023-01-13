@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Socks {
-    private Enum<Color> color;
-    private Enum<Size> size;
-    private Enum<Composition> composition;
+    private Color color;
+    private Size size;
+    private Composition composition;
     private boolean isThereInStock;
 }
