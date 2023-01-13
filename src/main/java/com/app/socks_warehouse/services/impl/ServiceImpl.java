@@ -1,6 +1,7 @@
 package com.app.socks_warehouse.services.impl;
 
 import com.app.socks_warehouse.model.Socks;
+import com.app.socks_warehouse.model.enums.Color;
 import com.app.socks_warehouse.services.Service;
 
 import java.util.HashMap;
@@ -26,8 +27,8 @@ public class ServiceImpl implements Service {
     @Override
     public Integer getQuantityByColorSocks(String color) {
         int q = 0;
-        if (socksMap.keySet().iterator().next().getColor().name().equalsIgnoreCase(color)) {
-            ++q;
+        for (int i = 0; i < socksMap.size(); i++) {
+            q += socksMap.get(Color.valueOf(color));
         }
         return q;
     }
