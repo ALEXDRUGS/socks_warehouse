@@ -4,6 +4,9 @@ import com.app.socks_warehouse.model.Socks;
 
 public interface Service {
     Socks addSocks(Socks socks);
+    Integer getQuantityByColorAndCompositionSocks(Socks socks);
 
-    Integer getQuantityByColorSocks(String color);
+    void issuesSocks(Socks socks, Integer quantity);
+
+    Integer getAll();
 }

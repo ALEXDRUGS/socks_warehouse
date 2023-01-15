@@ -11,13 +11,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/socks")
 public class Controller {
     private final Service service;
+
     public Controller(Service service) {
         this.service = service;
-    }
-
-    @GetMapping("/")
-    public String helloWorld() {
-        return "Приложение запущено";
     }
 
     @PostMapping("/add")
@@ -32,7 +28,24 @@ public class Controller {
     }
 
     @GetMapping("/color")
-    public Integer getQuantity(@RequestBody String color) {
-        return service.getQuantityByColorSocks(color);
+    public Integer getQuantity(@RequestBody Socks socks) {
+        return service.getQuantityByColorAndCompositionSocks(socks);
+    }
+
+    @GetMapping("/all")
+    public Integer getAllSocks() {
+        return service.getAll();
+    }
+
+    @PutMapping("/put")
+    public void issueSocks(@RequestParam Socks socks,
+                           @RequestParam Integer quantity) {
+        service.issuesSocks(socks, quantity);
+    }
+
+    @DeleteMapping("/delete")
+    public void deleteSocks(@RequestParam Socks socks,
+                            @RequestParam Integer quantity) {
+        service.issuesSocks(socks, quantity);
     }
 }
