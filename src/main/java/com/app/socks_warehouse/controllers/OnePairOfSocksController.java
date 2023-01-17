@@ -4,9 +4,7 @@ import com.app.socks_warehouse.model.OnePairOfSocks;
 import com.app.socks_warehouse.model.enums.Color;
 import com.app.socks_warehouse.model.enums.Size;
 import com.app.socks_warehouse.services.OnePairOfSocksService;
-import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,12 +30,12 @@ public class OnePairOfSocksController {
     }
 
     @PutMapping
-    public void registersTheReleaseOfSocksFromTheWarehouse(@RequestParam OnePairOfSocks onePairOfSocks) {
+    public void registersTheReleaseOfSocksFromTheWarehouse(@RequestBody OnePairOfSocks onePairOfSocks) {
         onePairOfSocksService.registersTheReleaseOfSocksFromTheWarehouse(onePairOfSocks);
     }
 
     @DeleteMapping
-    public void registersTheWrite_offOfDamagedSocks(@RequestParam OnePairOfSocks onePairOfSocks) {
+    public void registersTheWrite_offOfDamagedSocks(@RequestBody OnePairOfSocks onePairOfSocks) {
         onePairOfSocksService.registersTheReleaseOfSocksFromTheWarehouse(onePairOfSocks);
     }
 }
