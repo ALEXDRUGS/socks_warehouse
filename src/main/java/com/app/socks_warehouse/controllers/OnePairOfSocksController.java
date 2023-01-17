@@ -19,14 +19,8 @@ public class OnePairOfSocksController {
     }
 
     @PostMapping
-    public ResponseEntity<OnePairOfSocks> registersTheArrivalOfGoodsAtTheWarehouse(@RequestBody @NotNull OnePairOfSocks onePairOfSocks) {
-        ResponseEntity<OnePairOfSocks> result;
-        if (StringUtils.isBlank(onePairOfSocks.getColor().name())) {
-            result = ResponseEntity.badRequest().build();
-        } else {
-            result = ResponseEntity.ok(onePairOfSocksService.registersTheArrivalOfGoodsAtTheWarehouse(onePairOfSocks));
-        }
-        return result;
+    public OnePairOfSocks registersTheArrivalOfGoodsAtTheWarehouse(@RequestBody @NotNull OnePairOfSocks onePairOfSocks) {
+        return onePairOfSocksService.registersTheArrivalOfGoodsAtTheWarehouse(onePairOfSocks);
     }
 
     @GetMapping
