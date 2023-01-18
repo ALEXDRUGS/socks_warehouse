@@ -35,7 +35,7 @@ public class OnePairOfSocksOnePairOfSocksServiceImpl implements OnePairOfSocksSe
             if (color != null && !entry.getKey().getColor().equals(color)) {
                 continue;
             }
-            if (size != null && !Integer.valueOf(entry.getKey().getSize().getSize()).equals(size)) {
+            if (size != null && !Integer.valueOf(entry.getKey().getSize().getDataSize()).equals(size)) {
                 continue;
             }
             if (cottonMin != null && entry.getKey().getCottonPart() < cottonMin) {
@@ -65,19 +65,19 @@ public class OnePairOfSocksOnePairOfSocksServiceImpl implements OnePairOfSocksSe
 
     private Size validateSize(Integer size) {
         Size sizeAdd = null;
-        if (String.valueOf(size).equals(Size.L.getSize())) {
+        if (String.valueOf(size).equals(Size.L.getDataSize())) {
             sizeAdd = Size.L;
         }
-        if (String.valueOf(size).equals(Size.S.getSize())) {
+        if (String.valueOf(size).equals(Size.S.getDataSize())) {
             sizeAdd = Size.S;
         }
-        if (String.valueOf(size).equals(Size.M.getSize())) {
+        if (String.valueOf(size).equals(Size.M.getDataSize())) {
             sizeAdd = Size.M;
         }
-        if (String.valueOf(size).equals(Size.XL.getSize())) {
+        if (String.valueOf(size).equals(Size.XL.getDataSize())) {
             sizeAdd = Size.XL;
         }
-        if (String.valueOf(size).equals(Size.XXL.getSize())) {
+        if (String.valueOf(size).equals(Size.XXL.getDataSize())) {
             sizeAdd = Size.XXL;
         }
         return sizeAdd;

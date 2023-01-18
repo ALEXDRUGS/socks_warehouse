@@ -12,7 +12,7 @@ public enum Size {
         this.size = size;
     }
 
-    public String getSize() {
+    public String getDataSize() {
         return size;
     }
 
