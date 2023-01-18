@@ -14,7 +14,9 @@ public class OnePairOfSocksOnePairOfSocksServiceImpl implements OnePairOfSocksSe
     private final Map<OnePairOfSocks, Integer> socksMap = new HashMap<>();
 
     @Override
-    public OnePairOfSocks registersTheArrivalOfGoodsAtTheWarehouse(OnePairOfSocks onePairOfSocks) {
+    public OnePairOfSocks registersTheArrivalOfGoodsAtTheWarehouse(Color color, Size size, Integer cottonPart,
+                                                                   Integer quantity) {
+        OnePairOfSocks onePairOfSocks = new OnePairOfSocks(color, size, cottonPart, quantity);
         validateDataSocks(onePairOfSocks);
         if (socksMap.containsKey(onePairOfSocks)) {
             socksMap.put(onePairOfSocks, socksMap.get(onePairOfSocks) + onePairOfSocks.getQuantity());
@@ -25,29 +27,30 @@ public class OnePairOfSocksOnePairOfSocksServiceImpl implements OnePairOfSocksSe
     }
 
     @Override
-    public Integer returnsTheTotalNumberOfSocksInStockThatMatchTheRequestCriteriaPassedInTheParameters(Color color, Size size, Integer cottonMin, Integer cottonMax
-    ) {
+    public Integer returnsTheTotalNumberOfSocksInStockThatMatchTheRequestCriteriaPassedInTheParameters(Color color, Size size, Integer cottonMin, Integer cottonMax) {
         int q = 0;
-       for (Map.Entry<OnePairOfSocks, Integer> entry : socksMap.entrySet()){
-           if (color != null && !entry.getKey().getColor().equals(color)) {
-               continue;
-           }
-           if (size != null && !entry.getKey().getSize().equals(size)) {
-               continue;
-           }
-           if (cottonMin != null && entry.getKey().getCottonPart() < cottonMin) {
-               continue;
-           }
-           if (cottonMax != null && entry.getKey().getCottonPart() > cottonMax) {
-               continue;
-           }
-           q += entry.getValue();
+        for (Map.Entry<OnePairOfSocks, Integer> entry : socksMap.entrySet()) {
+            if (color != null && !entry.getKey().getColor().equals(color)) {
+                continue;
+            }
+            if (size != null && !entry.getKey().getSize().equals(size)) {
+                continue;
+            }
+            if (cottonMin != null && entry.getKey().getCottonPart() < cottonMin) {
+                continue;
+            }
+            if (cottonMax != null && entry.getKey().getCottonPart() > cottonMax) {
+                continue;
+            }
+            q += entry.getValue();
         }
         return q;
     }
 
     @Override
-    public void registersTheReleaseOfSocksFromTheWarehouse(OnePairOfSocks onePairOfSocks) {
+    public void registersTheReleaseOfSocksFromTheWarehouse(Color color, Size size, Integer cottonPart,
+                                                           Integer quantity) {
+        OnePairOfSocks onePairOfSocks = new OnePairOfSocks(color, size, cottonPart, quantity);
         validateDataSocks(onePairOfSocks);
         Integer q = socksMap.getOrDefault(onePairOfSocks, 0);
         if (q >= onePairOfSocks.getQuantity()) {

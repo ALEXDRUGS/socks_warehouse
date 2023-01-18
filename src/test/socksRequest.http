@@ -1,72 +1,20 @@
-POST http://localhost:8080/api/socks
-Content-Type: application/json
-
-{
-  "color": "RED",
-  "size": "M",
-  "cottonPart": 36,
-  "quantity": 15
-}
+###
+POST http://localhost:8080/api/socks?color=RED&size=M&cottonPart=40&quantity=5
 
 ###
-POST http://localhost:8080/api/socks
-Content-Type: application/json
-
-{
-  "color": "BLUE",
-  "size": "L",
-  "composition": "COTTON_30",
-  "quantity": 30
-}
+POST http://localhost:8080/api/socks?color=RED&size=M&cottonPart=5&quantity=10
 
 ###
-POST http://localhost:8080/api/socks
-Content-Type: application/json
-
-{
-  "color": "BLUE",
-  "size": "XL",
-  "composition": "COTTON_60",
-  "quantity": 20
-}
+POST http://localhost:8080/api/socks?color=RED&size=M&cottonPart=95&quantity=20
 
 ###
-GET http://localhost:8080/api/socks
-Content-Type: application/json
-
-{
-  "color": "BLUE",
-  "size": "L",
-  "composition": "COTTON_30",
-  "quantity": 0
-}
+PUT http://localhost:8080/api/socks?color=RED&size=M&cottonPart=40&quantity=5
 
 ###
-POST http://localhost:8080/api/socks?color=red&size=36&cottonPart=40&quantity=5
+GET http://localhost:8080/api/socks?color=RED&size=M&cottonMin=90
 
 ###
-PUT http://localhost:8080/api/socks?color=red&36&cottonPart=40&quantity=5
+GET http://localhost:8080/api/socks?color=RED&size=M&cottonMax=10
 
 ###
-GET http://localhost:8080/api/socks?color=RED&size=M&cottonmin=90
-
-###
-GET http://localhost:8080/api/socks?color=red&36&cottonmax=10
-
-###
-DELETE http://localhost:8080/api/socks?color=red&36&cottonPart=40&quantity=5
-
-###
-POST http://localhost:8080/api/socks?color=red&36&cottonPart=40&quantity=5
-
-###
-PUT http://localhost:8080/api/socks?color=red&36&cottonPart=40&quantity=5
-
-###
-GET http://localhost:8080/api/socks?color=red&36&cottonmin=90
-
-###
-GET http://localhost:8080/api/socks?color=red&36&cottonmax=10
-
-###
-DELETE http://localhost:8080/api/socks?color=red&36&cottonPart=40&quantity=5
+DELETE http://localhost:8080/api/socks?color=RED&size=M&cottonPart=40&quantity=5
