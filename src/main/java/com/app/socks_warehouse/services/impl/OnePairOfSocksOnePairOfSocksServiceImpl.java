@@ -14,9 +14,9 @@ public class OnePairOfSocksOnePairOfSocksServiceImpl implements OnePairOfSocksSe
     private final Map<OnePairOfSocks, Integer> socksMap = new HashMap<>();
 
     @Override
-    public OnePairOfSocks registersTheArrivalOfGoodsAtTheWarehouse(Color color, Size size, Integer cottonPart,
+    public OnePairOfSocks registersTheArrivalOfGoodsAtTheWarehouse(Color color, Integer size, Integer cottonPart,
                                                                    Integer quantity) {
-        OnePairOfSocks onePairOfSocks = new OnePairOfSocks(color, size, cottonPart, quantity);
+        OnePairOfSocks onePairOfSocks = new OnePairOfSocks(color, validateSize(size), cottonPart, quantity);
         validateDataSocks(onePairOfSocks);
         if (socksMap.containsKey(onePairOfSocks)) {
             socksMap.put(onePairOfSocks, socksMap.get(onePairOfSocks) + onePairOfSocks.getQuantity());
@@ -27,13 +27,15 @@ public class OnePairOfSocksOnePairOfSocksServiceImpl implements OnePairOfSocksSe
     }
 
     @Override
-    public Integer returnsTheTotalNumberOfSocksInStockThatMatchTheRequestCriteriaPassedInTheParameters(Color color, Size size, Integer cottonMin, Integer cottonMax) {
+    public Integer returnsTheTotalNumberOfSocksInStockThatMatchTheRequestCriteriaPassedInTheParameters(Color color,
+                                                                                                       Integer size,
+                                                                                                       Integer cottonMin, Integer cottonMax) {
         int q = 0;
         for (Map.Entry<OnePairOfSocks, Integer> entry : socksMap.entrySet()) {
             if (color != null && !entry.getKey().getColor().equals(color)) {
                 continue;
             }
-            if (size != null && !entry.getKey().getSize().equals(size)) {
+            if (size != null && !Integer.valueOf(entry.getKey().getSize().getSize()).equals(size)) {
                 continue;
             }
             if (cottonMin != null && entry.getKey().getCottonPart() < cottonMin) {
@@ -48,9 +50,10 @@ public class OnePairOfSocksOnePairOfSocksServiceImpl implements OnePairOfSocksSe
     }
 
     @Override
-    public void registersTheReleaseOfSocksFromTheWarehouse(Color color, Size size, Integer cottonPart,
+    public void registersTheReleaseOfSocksFromTheWarehouse(Color color, Integer size, Integer cottonPart,
                                                            Integer quantity) {
-        OnePairOfSocks onePairOfSocks = new OnePairOfSocks(color, size, cottonPart, quantity);
+
+        OnePairOfSocks onePairOfSocks = new OnePairOfSocks(color, validateSize(size), cottonPart, quantity);
         validateDataSocks(onePairOfSocks);
         Integer q = socksMap.getOrDefault(onePairOfSocks, 0);
         if (q >= onePairOfSocks.getQuantity()) {
@@ -58,6 +61,26 @@ public class OnePairOfSocksOnePairOfSocksServiceImpl implements OnePairOfSocksSe
         } else {
             throw new InvalidSocksException("There is no socks");
         }
+    }
+
+    private Size validateSize(Integer size) {
+        Size sizeAdd = null;
+        if (String.valueOf(size).equals(Size.L.getSize())) {
+            sizeAdd = Size.L;
+        }
+        if (String.valueOf(size).equals(Size.S.getSize())) {
+            sizeAdd = Size.S;
+        }
+        if (String.valueOf(size).equals(Size.M.getSize())) {
+            sizeAdd = Size.M;
+        }
+        if (String.valueOf(size).equals(Size.XL.getSize())) {
+            sizeAdd = Size.XL;
+        }
+        if (String.valueOf(size).equals(Size.XXL.getSize())) {
+            sizeAdd = Size.XXL;
+        }
+        return sizeAdd;
     }
 
     private void validateDataSocks(OnePairOfSocks onePairOfSocks) {
