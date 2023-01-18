@@ -15,15 +15,7 @@ public class OnePairOfSocksOnePairOfSocksServiceImpl implements OnePairOfSocksSe
 
     @Override
     public OnePairOfSocks registersTheArrivalOfGoodsAtTheWarehouse(OnePairOfSocks onePairOfSocks) {
-        if (onePairOfSocks.getColor() == null || onePairOfSocks.getSize() == null) {
-            throw new InvalidSocksException("All fields should be filled");
-        }
-        if (onePairOfSocks.getCottonPart() < 0 || onePairOfSocks.getCottonPart() > 100) {
-            throw new InvalidSocksException("Cotton part should be between 0 and 100");
-        }
-        if (onePairOfSocks.getQuantity() <= 0) {
-            throw new InvalidSocksException("Quantity should be more than 0");
-        }
+        validateDataSocks(onePairOfSocks);
         if (socksMap.containsKey(onePairOfSocks)) {
             socksMap.put(onePairOfSocks, socksMap.get(onePairOfSocks) + onePairOfSocks.getQuantity());
         } else {
@@ -56,6 +48,16 @@ public class OnePairOfSocksOnePairOfSocksServiceImpl implements OnePairOfSocksSe
 
     @Override
     public void registersTheReleaseOfSocksFromTheWarehouse(OnePairOfSocks onePairOfSocks) {
+        validateDataSocks(onePairOfSocks);
+        Integer q = socksMap.getOrDefault(onePairOfSocks, 0);
+        if (q >= onePairOfSocks.getQuantity()) {
+            socksMap.put(onePairOfSocks, q - onePairOfSocks.getQuantity());
+        } else {
+            throw new InvalidSocksException("There is no socks");
+        }
+    }
+
+    private void validateDataSocks(OnePairOfSocks onePairOfSocks) {
         if (onePairOfSocks.getColor() == null || onePairOfSocks.getSize() == null) {
             throw new InvalidSocksException("All fields should be filled");
         }
@@ -64,12 +66,6 @@ public class OnePairOfSocksOnePairOfSocksServiceImpl implements OnePairOfSocksSe
         }
         if (onePairOfSocks.getQuantity() <= 0) {
             throw new InvalidSocksException("Quantity should be more than 0");
-        }
-        Integer q = socksMap.getOrDefault(onePairOfSocks, 0);
-        if (q >= onePairOfSocks.getQuantity()) {
-            socksMap.put(onePairOfSocks, q - onePairOfSocks.getQuantity());
-        } else {
-            throw new InvalidSocksException("There is no socks");
         }
     }
 }

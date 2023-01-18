@@ -42,7 +42,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:8080/api/socks?color=red&size=M&cottonPart=40&quantity=5
+POST http://localhost:8080/api/socks?color=red&size=36&cottonPart=40&quantity=5
 
 ###
 PUT http://localhost:8080/api/socks?color=red&36&cottonPart=40&quantity=5

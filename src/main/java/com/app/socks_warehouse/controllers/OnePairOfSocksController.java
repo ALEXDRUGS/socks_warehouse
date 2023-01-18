@@ -30,12 +30,12 @@ public class OnePairOfSocksController {
     }
 
     @PutMapping
-    public void registersTheReleaseOfSocksFromTheWarehouse(@RequestBody OnePairOfSocks onePairOfSocks) {
+    public void registersTheReleaseOfSocksFromTheWarehouse(@RequestParam OnePairOfSocks onePairOfSocks) {
         onePairOfSocksService.registersTheReleaseOfSocksFromTheWarehouse(onePairOfSocks);
     }
 
     @DeleteMapping
-    public void registersTheWrite_offOfDamagedSocks(@RequestBody OnePairOfSocks onePairOfSocks) {
+    public void registersTheWrite_offOfDamagedSocks(@RequestParam OnePairOfSocks onePairOfSocks) {
         onePairOfSocksService.registersTheReleaseOfSocksFromTheWarehouse(onePairOfSocks);
     }
 }
